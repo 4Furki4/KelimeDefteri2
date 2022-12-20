@@ -1,0 +1,31 @@
+{{createRecordForm.value | json}}
+
+<form action="" [formGroup]="createRecordForm">
+    <div formArrayName="record">
+        <div *ngFor="let recControl of record.controls; let i = index">
+            <div [formGroupName]="i">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                <div formArrayName="definitions">
+                    <div *ngFor="let def of definition(i).controls ; let x = index">
+                        <div [formGroupName]="x">
+                            <mat-form-field>
+                                <mat-label>Definition</mat-label>
+                                <input matInput formControlName="definition">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>definitionType</mat-label>
+                                <input matInput formControlName="definitionType">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<button (click)="addWord()">
+    Ekle
+</button>
