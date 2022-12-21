@@ -19,6 +19,12 @@
                                 <mat-label>definitionType</mat-label>
                                 <input matInput formControlName="definitionType">
                             </mat-form-field>
+                            <button mat-raised-button extended *ngIf="x>=1" (click)="removeDefinition(i,x)">
+                                Sil
+                            </button>
+                            <button mat-raised-button extended (click)="addDefinition(i)">
+                                Ekle
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -26,6 +32,6 @@
         </div>
     </div>
 </form>
-<button (click)="addWord()">
+<!-- <button (click)="addWord()">
     Ekle
-</button>
+</button> -->

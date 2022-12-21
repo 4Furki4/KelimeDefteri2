@@ -8,21 +8,13 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateRecordComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
-  get record(){
-    return this.createRecordForm.get('record') as FormArray;
+  get record() {
+    return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
-  get definitions(){
-    let arr : FormArray = this.formBuilder.array([]);
-    this.record.controls.forEach((control => {
-      // console.log(control.get('definitions'));
-      arr.push(control.get('definitions'))
-    }))
-    return arr;
-  }
-  
+
   createRecordForm!: FormGroup;
   ngOnInit(): void {
-    this.createRecordForm = this.formBuilder.group({
+    this.createRecordForm = this.formBuilder.group({ // Initial form with 4 words having 1 name and 1 definition array for each word.
       record: this.formBuilder.array([
         this.formBuilder.group({
           name: ['', Validators.required],
@@ -62,26 +54,33 @@ export class CreateRecordComponent implements OnInit {
         })
       ])
     })
-    // console.log(this.record.controls[0].get('definitions'))
-    
-    
   }
 
-  addWord(){
-    const word = this.formBuilder.group({
-      name: ['', Validators.required],
-      definitions: this.formBuilder.array([this.formBuilder.group(
-        {
-          definition: ['', Validators.required],
-          definitionType: ['', Validators.required],
-        }
-      )])
+  // addWord(){
+  //   const word = this.formBuilder.group({
+  //     name: ['', Validators.required],
+  //     definitions: this.formBuilder.array([this.formBuilder.group(
+  //       {
+  //         definition: ['', Validators.required],
+  //         definitionType: ['', Validators.required],
+  //       }
+  //     )])
+  //   })
+  //   this.record.push(word);
+  //   console.log(this.definitions.controls[0]);
+  // }
+  addDefinition(index: number) {
+    const definition = this.formBuilder.group({
+      definition: ['', Validators.required],
+      definitionType: ['', Validators.required],
     })
-    this.record.push(word);
-    console.log(this.definitions.controls[0]);
+    this.definition(index).push(definition);
+  }
+  removeDefinition(word: number, definition: number) { // word=> index of the word in the record array, definition=> index of the definition in the definitions array
+    this.definition(word).removeAt(definition); // remove the definition from the definitions array
   }
 
-  definition(index:number) : FormArray {
+  definition(index: number): FormArray { // function that helps to get the definitions array by index from the record array
     return this.record.controls[index].get('definitions') as FormArray;
   }
 }
