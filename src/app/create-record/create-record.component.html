@@ -1,33 +1,34 @@
-{{createRecordForm.value | json}}
+<!-- {{createRecordForm.value | json}} -->
 
-<form action="" [formGroup]="createRecordForm">
+<form action="" [formGroup]="createRecordForm" class="mt-3">
     <div formArrayName="record">
-        <div *ngFor="let recControl of record.controls; let i = index">
-            <div [formGroupName]="i">
-                <mat-form-field>
+        <div *ngFor="let recControl of record.controls; let i = index" class="shadow-lg">
+            <div [formGroupName]="i" >
+                <mat-form-field appearance="outline" class="offset-2 col-4">
                     <mat-label>Name</mat-label>
-                    <input matInput formControlName="name">
+                    <input class="" matInput formControlName="name">
                 </mat-form-field>
-                <div formArrayName="definitions">
+                <span formArrayName="definitions">
                     <div *ngFor="let def of definition(i).controls ; let x = index">
-                        <div [formGroupName]="x">
-                            <mat-form-field>
+                        <span [formGroupName]="x">
+                            <mat-form-field appearance="outline" class="offset-2 col-4">
                                 <mat-label>Definition</mat-label>
-                                <input matInput formControlName="definition">
+                                <input class="" matInput formControlName="definition">
                             </mat-form-field>
-                            <mat-form-field>
+                            <mat-form-field appearance="outline" class="col-4 ms-2">
                                 <mat-label>definitionType</mat-label>
-                                <input matInput formControlName="definitionType">
+                                <input class="" matInput formControlName="definitionType">
                             </mat-form-field>
                             <button mat-raised-button extended *ngIf="x>=1" (click)="removeDefinition(i,x)">
                                 Sil
                             </button>
-                            <button mat-raised-button extended (click)="addDefinition(i)">
+                            <button *ngIf="x===0" mat-raised-button extended (click)="addDefinition(i)">
                                 Ekle
                             </button>
-                        </div>
+                        </span>
                     </div>
-                </div>
+                    
+                </span>
             </div>
         </div>
     </div>
