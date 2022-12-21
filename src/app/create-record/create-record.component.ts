@@ -12,12 +12,16 @@ export class CreateRecordComponent implements OnInit {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
 
+  wordNameAt(index: number, error: string){
+    return this.record.controls[index].get('name')?.hasError(error);
+  }
+
   createRecordForm!: FormGroup;
   ngOnInit(): void {
     this.createRecordForm = this.formBuilder.group({ // Initial form with 4 words having 1 name and 1 definition array for each word.
       record: this.formBuilder.array([
         this.formBuilder.group({
-          name: ['', Validators.required],
+          name: ['', [Validators.required, Validators.minLength(3)]],
           definitions: this.formBuilder.array([this.formBuilder.group(
             {
               definition: ['', Validators.required],
@@ -26,7 +30,7 @@ export class CreateRecordComponent implements OnInit {
           )])
         }),
         this.formBuilder.group({
-          name: ['', Validators.required],
+          name: ['', [Validators.required, Validators.minLength(3)]],
           definitions: this.formBuilder.array([this.formBuilder.group(
             {
               definition: ['', Validators.required],
@@ -35,7 +39,7 @@ export class CreateRecordComponent implements OnInit {
           )])
         }),
         this.formBuilder.group({
-          name: ['', Validators.required],
+          name: ['', [Validators.required, Validators.minLength(3)]],
           definitions: this.formBuilder.array([this.formBuilder.group(
             {
               definition: ['', Validators.required],
@@ -44,7 +48,7 @@ export class CreateRecordComponent implements OnInit {
           )])
         }),
         this.formBuilder.group({
-          name: ['', Validators.required],
+          name: ['', [Validators.required, Validators.minLength(3)]],
           definitions: this.formBuilder.array([this.formBuilder.group(
             {
               definition: ['', Validators.required],
