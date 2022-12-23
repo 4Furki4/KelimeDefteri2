@@ -1,10 +1,10 @@
 {{createRecordForm.pristine | json}}
 
-<form action="" [formGroup]="createRecordForm" class="mt-3">
-    <div formArrayName="record">
-        <div *ngFor="let recControl of record.controls; let i = index" class="shadow-lg">
+<form action="" [formGroup]="createRecordForm" class="offset-2 col-8" >
+    <div formArrayName="record" class="border border-1 rounded-2">
+        <div *ngFor="let recControl of record.controls; let i = index" class="shadow-lg" >
             <div [formGroupName]="i" >
-                <mat-form-field appearance="outline" class="offset-2 col-4">
+                <mat-form-field appearance="outline" class="offset-2 col-4 mt-3">
                     <mat-label>Name</mat-label>
                     <input matInput formControlName="name">
                     <mat-error *ngIf="wordErrorAt(i, 'required')">
@@ -16,7 +16,7 @@
                 </mat-form-field>
                 <span formArrayName="definitions">
                     <div *ngFor="let def of definition(i).controls ; let x = index">
-                        <span [formGroupName]="x">
+                        <span [formGroupName]="x" class="">
                             <mat-form-field appearance="outline" class="offset-2 col-4">
                                 <mat-label>Definition</mat-label>
                                 <input class="" matInput formControlName="definition">
@@ -37,12 +37,13 @@
                                     Minimum length is 3
                                 </mat-error>
                             </mat-form-field>
-                            <button mat-raised-button extended *ngIf="x>=1" (click)="removeDefinition(i,x)">
-                                Sil
-                            </button>
-                            <button *ngIf="x===0" mat-raised-button extended (click)="addDefinition(i)">
+                            <button *ngIf="x===0" mat-raised-button color="primary" focus (click)="addDefinition(i)">
                                 Ekle
                             </button>
+                            <button mat-raised-button color="primary" *ngIf="x>=1" (click)="removeDefinition(i,x)">
+                                Sil
+                            </button>
+                            
                         </span>
                     </div>
                 </span>

@@ -67,6 +67,10 @@ export class CreateRecordComponent implements OnInit {
   //   this.record.push(word);
   //   console.log(this.definitions.controls[0]);
   // }
+
+  definition(index: number): FormArray { // function that helps to get the definitions array by index from the record array
+    return this.record.controls[index].get('definitions') as FormArray;
+  }
   addDefinition(index: number) {
     const definition = this.formBuilder.group({
       definition: ['', Validators.required],
@@ -77,14 +81,9 @@ export class CreateRecordComponent implements OnInit {
   removeDefinition(word: number, definition: number) { // word=> index of the word in the record array, definition=> index of the definition in the definitions array
     this.definition(word).removeAt(definition); // remove the definition from the definitions array
   }
-
-  definition(index: number): FormArray { // function that helps to get the definitions array by index from the record array
-    return this.record.controls[index].get('definitions') as FormArray;
-  }
   wordErrorAt(index: number, error: string) {
     return this.record.controls[index].get('name')?.hasError(error);
   }
-
   definitionErrorAt(wordIndex: number, definition: number, error: string) {
     return this.definition(wordIndex).controls[definition].get('definition')?.hasError(error);
   }
