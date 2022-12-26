@@ -1,18 +1,33 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
+const EnterFadeInTransition = transition(':enter', [
+  style({ marginTop: '10px' }),
+  animate('750ms ease-out', style({ marginTop: '80px' })),
+]);
+const fadeIn = transition(':enter', [
+  style({ opacity: 0 }),
+  animate('1000ms ease-in', style({ opacity: 1 })),
+])
+const FadeOut = transition(':leave', [
+  style({ opacity: 1 }),
+  animate('300ms ease-out', style({ opacity: 0 })),
+]);
 
 @Component({
   selector: 'KD-create-record',
   templateUrl: './create-record.component.html',
-  styleUrls: ['./create-record.component.sass']
+  styleUrls: ['./create-record.component.sass'],
+  animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
 export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private elementRef: ElementRef) { }
+  constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, private route: Router) { }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
 
-  bgColor= 'grey';
   createRecordForm!: FormGroup;
   ngOnInit(): void {
     this.createRecordForm = this.formBuilder.group({ // Initial form with 4 words having 1 name and 1 definition array for each word.
@@ -55,8 +70,6 @@ export class CreateRecordComponent implements OnInit {
         })
       ])
     })
-
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f5f5f5'; // set the background color of the body to #f5f5f5
   }
   definition(index: number): FormArray { // function that helps to get the definitions array by index from the record array
     return this.record.controls[index].get('definitions') as FormArray;
@@ -82,15 +95,7 @@ export class CreateRecordComponent implements OnInit {
   }
 
   SubmitRecord() {
-    if(this.createRecordForm.invalid) {
-      return;
-    }
-    console.log(this.createRecordForm.value);
-    this.createRecordForm.reset();
-    console.log(this.createRecordForm.pristine);
-    console.log(this.createRecordForm.dirty);
-    console.log(this.record.pristine);
-    console.log(this.definition(0).pristine);
+    console.log("Record Submitted");
   }
 }
 

@@ -1,14 +1,7 @@
-
-<div class="text-white">
-    Pristine: {{this.createRecordForm.pristine | json}}<br>
-    Touched: {{this.createRecordForm.touched | json}}<br>
-    Valid: {{this.createRecordForm.valid | json}}<br>
-    Status: {{this.createRecordForm.status | json}}
-</div>
-<form (ngSubmit)="SubmitRecord()" [formGroup]="createRecordForm" class="offset-2 col-8 rounded-2">
+<form @slide @fadeIn [formGroup]="createRecordForm" class="offset-2 col-8 rounded-2">
     <div id="createForm" formArrayName="record" class="border rounded-2">
-        <div *ngFor="let recControl of record.controls; let i = index" class="shadow" >
-            <div [formGroupName]="i" >
+        <div *ngFor="let recControl of record.controls; let i = index" class="shadow">
+            <div [formGroupName]="i">
                 <mat-form-field appearance="outline" class="offset-2 col-4 mt-3 mb-1">
                     <mat-label>Name</mat-label>
                     <input matInput formControlName="name">
@@ -20,15 +13,16 @@
                     </mat-error>
                 </mat-form-field>
                 <span formArrayName="definitions">
-                    <div *ngFor="let def of definition(i).controls ; let x = index">
+                    <div *ngFor="let def of definition(i).controls ; let x = index" @fadeIn @fadeOut>
                         <span [formGroupName]="x" class="">
                             <mat-form-field appearance="outline" class="offset-2 col-4 mb-2">
                                 <mat-label>Definition</mat-label>
                                 <input class="" matInput formControlName="definition">
-                                <mat-error *ngIf="definitionErrorAt(i,x,'required') && createRecordForm.invalid && (createRecordForm.dirty || createRecordForm.touched)">
+                                <mat-error *ngIf="definitionErrorAt(i,x,'required')">
                                     Definition is required
                                 </mat-error>
-                                <mat-error *ngIf="definitionErrorAt(i,x,'minlength') && !definitionErrorAt(i,x,'required')">
+                                <mat-error
+                                    *ngIf="definitionErrorAt(i,x,'minlength') && !definitionErrorAt(i,x,'required')">
                                     Minimum length is 3
                                 </mat-error>
                             </mat-form-field>
@@ -38,14 +32,17 @@
                                 <mat-error *ngIf="definitionTypeErrorAt(i,x,'required')">
                                     Definition type is required
                                 </mat-error>
-                                <mat-error *ngIf="definitionTypeErrorAt(i,x,'minlength') && !definitionTypeErrorAt(i,x,'required')">
+                                <mat-error
+                                    *ngIf="definitionTypeErrorAt(i,x,'minlength') && !definitionTypeErrorAt(i,x,'required')">
                                     Minimum length is 3
                                 </mat-error>
                             </mat-form-field>
-                            <button class="bt-size" *ngIf="x===0" mat-raised-button color="primary" focus (click)="addDefinition(i)">
+                            <button class="bt-size" *ngIf="x===0" mat-raised-button color="primary" focus
+                                (click)="addDefinition(i)">
                                 Ekle
                             </button>
-                            <button  class="bt-size" mat-raised-button color="primary" *ngIf="x>=1" (click)="removeDefinition(i,x)">
+                            <button class="bt-size" mat-raised-button color="primary" *ngIf="x>=1"
+                                (click)="removeDefinition(i,x)">
                                 Sil
                             </button>
                         </span>
@@ -54,7 +51,7 @@
             </div>
         </div>
     </div>
-    <button type="submit"[disabled]="!this.createRecordForm.valid" class="bt-size" mat-raised-button color="primary">
+    <button type="submit" [disabled]="!this.createRecordForm.valid" class="bt-size" mat-raised-button color="primary">
         Ekle
     </button>
 </form>

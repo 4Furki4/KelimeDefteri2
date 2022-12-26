@@ -16,7 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
   declarations: [
     AppComponent,
     NotFoundComponent,
-    AppNavComponent
+    AppNavComponent,
   ],
   imports: [
     BrowserModule,
