@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'KD-create-record',
@@ -79,6 +79,18 @@ export class CreateRecordComponent implements OnInit {
   }
   definitionTypeErrorAt(wordIndex: number, definition: number, error: string) {
     return this.definition(wordIndex).controls[definition].get('definitionType')?.hasError(error);
+  }
+
+  SubmitRecord() {
+    if(this.createRecordForm.invalid) {
+      return;
+    }
+    console.log(this.createRecordForm.value);
+    this.createRecordForm.reset();
+    console.log(this.createRecordForm.pristine);
+    console.log(this.createRecordForm.dirty);
+    console.log(this.record.pristine);
+    console.log(this.definition(0).pristine);
   }
 }
 
