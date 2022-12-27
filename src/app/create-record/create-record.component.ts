@@ -95,7 +95,8 @@ export class CreateRecordComponent implements OnInit {
   }
 
   SubmitRecord() {
-    console.log("Record Submitted");
+    // submitting operations here
+    console.log(this.createRecordForm.value);
   }
 }
 

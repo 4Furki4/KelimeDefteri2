@@ -1,6 +1,6 @@
 <form @slide @fadeIn [formGroup]="createRecordForm" class="offset-2 col-8 rounded-2">
-    <div id="createForm" formArrayName="record" class="border rounded-2">
-        <div *ngFor="let recControl of record.controls; let i = index" class="shadow">
+    <div id="createForm" formArrayName="record" class="border border-bottom-0 rounded-2">
+        <div *ngFor="let recControl of record.controls; let i = index"  class="border-bottom rounded-2" style="border-color: #673AB7 !important; border-width: 2px !important;">
             <div [formGroupName]="i">
                 <mat-form-field appearance="outline" class="offset-2 col-4 mt-3 mb-1">
                     <mat-label>Name</mat-label>
@@ -12,8 +12,8 @@
                         Minimum length is 3
                     </mat-error>
                 </mat-form-field>
-                <span formArrayName="definitions">
-                    <div *ngFor="let def of definition(i).controls ; let x = index" @fadeIn @fadeOut>
+                <span formArrayName="definitions" >
+                    <div *ngFor="let def of definition(i).controls ; let x = index" @fadeIn @fadeOut >
                         <span [formGroupName]="x" class="">
                             <mat-form-field appearance="outline" class="offset-2 col-4 mb-2">
                                 <mat-label>Definition</mat-label>
@@ -51,7 +51,11 @@
             </div>
         </div>
     </div>
-    <button type="submit" [disabled]="!this.createRecordForm.valid" class="bt-size" mat-raised-button color="primary">
-        Ekle
-    </button>
+    <div class="row">
+        <div class="col-3 offset-5 mb-5">
+            <button id="submitBtn" type="submit" (click)="SubmitRecord()" [disabled]="!this.createRecordForm.valid" class="shadow-lg text-white border-bottom" mat-raised-button color="primary">
+                Ekle
+            </button>
+        </div>
+    </div>
 </form>
