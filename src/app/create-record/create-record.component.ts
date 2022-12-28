@@ -5,7 +5,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 
 const EnterFadeInTransition = transition(':enter', [
   style({ marginTop: '10px' }),
-  animate('750ms ease-out', style({ marginTop: '80px' })),
+  animate('750ms ease-out', style({ marginTop: '40px' })),
 ]);
 const fadeIn = transition(':enter', [
   style({ opacity: 0 }),
