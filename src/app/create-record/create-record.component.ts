@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { IWord } from '../Record/Abstracts/IWord';
+import { CreateRecordService } from './create-record.service';
 
 const EnterFadeInTransition = transition(':enter', [
   style({ marginTop: '10px' }),
@@ -23,7 +25,7 @@ const FadeOut = transition(':leave', [
   animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
 export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, private route: Router) { }
+  constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, private route: Router, private postService : CreateRecordService) { }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
@@ -95,8 +97,7 @@ export class CreateRecordComponent implements OnInit {
   }
 
   SubmitRecord() {
-    // submitting operations here
-    console.log(this.createRecordForm.value);
+    this.postService.PrepareRecord(this.createRecordForm);
   }
 }
 

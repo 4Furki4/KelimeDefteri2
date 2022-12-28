@@ -1,4 +1,4 @@
-<form @slide @fadeIn [formGroup]="createRecordForm" class="offset-2 col-8 rounded-2">
+<form @slide @fadeIn [formGroup]="createRecordForm" class="offset-xl-1 offset-xxl-2 col-xxl-8 col-xl-10  rounded-2">
     <div id="createForm" formArrayName="record" class="border border-bottom-0 rounded-2">
         <div *ngFor="let recControl of record.controls; let i = index"  class="border-bottom rounded-2" style="border-color: #673AB7 !important; border-width: 2px !important;">
             <div [formGroupName]="i">

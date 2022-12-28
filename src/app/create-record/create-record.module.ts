@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { HttpClient } from '@angular/common/http';
+import { CreateRecordService } from './create-record.service';
 @NgModule({
   declarations: [CreateRecordComponent],
   imports: [
@@ -15,6 +17,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule
+  ],
+  providers: [
+    CreateRecordService,
+    HttpClient
   ]
 })
 export class CreateRecordModule { }
