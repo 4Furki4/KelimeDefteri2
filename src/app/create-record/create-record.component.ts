@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { IWord } from '../Record/Abstracts/IWord';
+import { Record } from '../Record/Concretes/Record';
 import { CreateRecordService } from './create-record.service';
 
 const EnterFadeInTransition = transition(':enter', [
@@ -97,7 +98,8 @@ export class CreateRecordComponent implements OnInit {
   }
 
   SubmitRecord() {
-    this.postService.PrepareRecord(this.createRecordForm);
+    const record: Record = this.postService.PrepareRecord(this.createRecordForm);
+    this.postService.PostRecord(record);
   }
 }
 
