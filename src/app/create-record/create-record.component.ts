@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { IWord } from '../Record/Abstracts/IWord';
+import { trigger, style, transition, animate } from '@angular/animations';
 import { Record } from '../Record/Concretes/Record';
 import { CreateRecordService } from './create-record.service';
 
@@ -26,10 +25,11 @@ const FadeOut = transition(':leave', [
   animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
 export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, private route: Router, private postService : CreateRecordService) { }
+  constructor(private formBuilder: FormBuilder, private route: Router, private postService : CreateRecordService) { }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
+  receivedData : any[]= [];
 
   createRecordForm!: FormGroup;
   ngOnInit(): void {
@@ -99,7 +99,15 @@ export class CreateRecordComponent implements OnInit {
 
   SubmitRecord() {
     const record: Record = this.postService.PrepareRecord(this.createRecordForm);
-    this.postService.PostRecord(record);
+    this.postService.PostRecord(record).subscribe({
+      next: (data) => {
+        console.log(data.body);
+      this.route.navigate(['record-detail'], { queryParams: {/*this will be the date of the record that was created */ } });
+      },
+      error: (error) => {
+        console.log(error); // This will do something meaningful, like throwing a message to user that the submittion is failed, in the future.
+      }
+    });
   }
 }
 
