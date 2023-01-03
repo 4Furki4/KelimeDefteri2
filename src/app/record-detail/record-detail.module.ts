@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RecordDetailRoutingModule } from './record-detail-routing.module';
+import { RecordDetailComponent } from './record-detail.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [RecordDetailComponent],
   imports: [
     CommonModule,
     RecordDetailRoutingModule
