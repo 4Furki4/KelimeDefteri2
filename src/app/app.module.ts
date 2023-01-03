@@ -13,11 +13,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RecordDetailComponent } from './record-detail/record-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     AppNavComponent,
+    RecordDetailComponent,
   ],
   imports: [
     BrowserModule,
