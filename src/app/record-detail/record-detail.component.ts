@@ -13,14 +13,15 @@ export class RecordDetailComponent implements OnInit {
 
   constructor(private recService : RecordDetailService, private route : ActivatedRoute) { }
   Record !: Record;
-  recId !: number;
+  recDate !: string;
   message !: any;
   ngOnInit(): void {
     this.route.paramMap.pipe(map(params => {
-      this.recId = Number(params.get('id'));
-      return this.recId;
+      this.recDate = params.get('date')?? '';
+      console.log(this.recDate)
+      return this.recDate;
     })).subscribe();
-    this.recService.GetRecord(this.recId).subscribe({
+    this.recService.GetRecord(this.recDate).subscribe({
       next: (data) => {
         console.log(data);
         // data parsing will be done here
