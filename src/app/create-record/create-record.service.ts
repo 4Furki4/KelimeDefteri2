@@ -13,9 +13,9 @@ export class CreateRecordService {
     let record : Record = new Record();
     rec.value.record.forEach((value : any) => { // value is the word object
       let word : Word = new Word();
-      word.Name = value.name;
-      word.Definitions = value.definitions;
-      record.Words.push(word);
+      word.name = value.name;
+      word.definitions = value.definitions;
+      record.words.push(word);
     })
     return record;
   }

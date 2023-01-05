@@ -1,5 +1,22 @@
-<p>record-detail works!</p>
-<!-- {{Record | json}} -->
-<div style="color:wheat">
-    {{message.message}}
+<div id="expansionPanel" class="container">
+    <mat-accordion multi>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let word of Record.words" expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="fs-3" style="color: #673AB7;">
+                    {{word.name}}
+                </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let def of word.definitions" class="fs-6">
+                <div class="row">
+                    <div class="col-9 mt-1 py-3">
+                        {{def.definition}}
+                    </div>
+                    <div class="col-3 mt-1 py-3">
+                        İsim, eskimiş, edebiyat
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
