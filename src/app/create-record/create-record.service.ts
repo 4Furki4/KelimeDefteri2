@@ -11,6 +11,7 @@ export class CreateRecordService {
   constructor(private HttpClient : HttpClient) { }
   PrepareRecord(rec : FormGroup<any> ) : Record{ // It is used to prepare the record object from the form data.
     let record : Record = new Record();
+    record.CreatedDate = rec.value.createdDate;
     rec.value.record.forEach((value : any) => { // value is the word object
       let word : Word = new Word();
       word.name = value.name;
