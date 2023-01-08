@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { CreateRecordService } from './create-record.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [CreateRecordComponent],
   imports: [
@@ -16,7 +18,9 @@ import { CreateRecordService } from './create-record.service';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     CreateRecordService,

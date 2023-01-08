@@ -1,4 +1,18 @@
-<form @slide @fadeIn [formGroup]="createRecordForm" class="offset-xl-1 offset-xxl-2 col-xxl-8 col-xl-10  rounded-2">
+<form @slide @fadeIn [formGroup]="createRecordForm" class="offset-xl-1 offset-xxl-2 col-xxl-8 col-xl-10 rounded-2">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="mt-1 mb-3">Yeni Kayıt Oluştur</h1>
+        </div>
+    </div>
+    <mat-form-field class="mb-2" appearance="outline">
+        <mat-label>MM/DD/YYYY</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="createdDate">
+        <mat-error *ngIf="createRecordForm.get('createdDate')?.hasError('required')">
+            Please enter a valid date
+        </mat-error>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <div id="createForm" formArrayName="record" class="border border-bottom-0 rounded-2">
         <div *ngFor="let recControl of record.controls; let i = index" class="border-bottom rounded-2"
             style="border-color: #673AB7 !important; border-width: 2px !important;">

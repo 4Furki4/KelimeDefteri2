@@ -29,8 +29,11 @@ export class CreateRecordComponent implements OnInit {
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
-  receivedData: any[] = [];
 
+  receivedData: any[] = [];
+  get createdDate() {
+    return this.createRecordForm.get('createdDate')
+  }
   createRecordForm!: FormGroup;
   ngOnInit(): void {
     this.createRecordForm = this.formBuilder.group({ // Initial form with 4 words having 1 name and 1 definition array for each word.
@@ -71,7 +74,8 @@ export class CreateRecordComponent implements OnInit {
             }
           )])
         })
-      ])
+      ]),
+      createdDate: ['', Validators.required]
     })
   }
   definition(index: number): FormArray { // function that helps to get the definitions array by index from the record array
