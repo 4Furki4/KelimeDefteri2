@@ -25,11 +25,11 @@ const FadeOut = transition(':leave', [
   animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
 export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private route: Router, private postService : CreateRecordService) { }
+  constructor(private formBuilder: FormBuilder, private route: Router, private postService: CreateRecordService) { }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
-  receivedData : any[]= [];
+  receivedData: any[] = [];
 
   createRecordForm!: FormGroup;
   ngOnInit(): void {
@@ -97,12 +97,18 @@ export class CreateRecordComponent implements OnInit {
     return this.definition(wordIndex).controls[definition].get('definitionType')?.hasError(error);
   }
 
+  /**
+   * This function will be called when the user clicks on the submit button.
+   * It will prepare the record object and send it to the server.
+   * If the submittion is successful, it will navigate to the record-detail page.
+   * @returns void
+   */
   SubmitRecord() {
     const record: Record = this.postService.PrepareRecord(this.createRecordForm);
     this.postService.PostRecord(record).subscribe({
       next: (data) => {
         console.log(data.body);
-      this.route.navigate(['record-detail'], { queryParams: {/*this will be the date of the record that was created */ } });
+        this.route.navigate(['record-detail'], { queryParams: {/*this will be the date of the record that was created */ } });
       },
       error: (error) => {
         console.log(error); // This will do something meaningful, like throwing a message to user that the submittion is failed, in the future.

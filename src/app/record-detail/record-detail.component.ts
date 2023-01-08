@@ -13,13 +13,13 @@ import { RecordDetailService } from './record-detail.service';
 })
 export class RecordDetailComponent implements OnInit {
   panelOpenState = true;
-  constructor(private recService : RecordDetailService, private route : ActivatedRoute, private navRoute : Router) { }
+  constructor(private recService: RecordDetailService, private route: ActivatedRoute, private navRoute: Router) { }
   Record !: Record;
   recDate !: string;
   message !: any;
   ngOnInit(): void {
     this.route.paramMap.pipe(map(params => {
-      this.recDate = params.get('date')?? '';
+      this.recDate = params.get('date') ?? '';
       console.log(this.recDate)
       return this.recDate;
     })).subscribe();
@@ -27,15 +27,15 @@ export class RecordDetailComponent implements OnInit {
       next: (data) => {
         this.Record = data as Record;
         // data parsing will be done here
-    },
-    error: (err : HttpErrorResponse) => {
-      if(err.status == 404){
-        this.navRoute.navigateByUrl('**', {skipLocationChange: true}); // navigate to not found page if record not found
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err.status == 404) {
+          this.navRoute.navigateByUrl('**', { skipLocationChange: true }); // navigate to not found page if record not found
+        }
+        else if (err.status == 400) {
+          // handle bad request error
+        }
       }
-      else if(err.status == 400){
-        // handle bad request error
-      }
-    }
-  })
+    })
   }
 }

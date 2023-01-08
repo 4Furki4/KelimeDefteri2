@@ -1,6 +1,7 @@
 <div id="expansionPanel" class="container">
     <mat-accordion multi>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let word of Record.words" expanded>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            *ngFor="let word of Record.words" expanded>
             <mat-expansion-panel-header>
                 <mat-panel-title class="fs-3" style="color: #673AB7;">
                     {{word.name}}

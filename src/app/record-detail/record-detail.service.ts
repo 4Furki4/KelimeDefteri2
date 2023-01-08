@@ -9,8 +9,8 @@ import { Record } from '../Record/Concretes/Record';
 })
 export class RecordDetailService {
 
-  constructor(private HttpClient : HttpClient) { }
-  GetRecord(date : string) {
+  constructor(private HttpClient: HttpClient) { }
+  GetRecord(date: string) {
     return this.HttpClient.get(`http://localhost:5000/api/WordBook/${date}`);
   }
 }

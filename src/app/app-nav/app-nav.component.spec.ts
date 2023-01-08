@@ -8,9 +8,9 @@ describe('AppNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppNavComponent ]
+      declarations: [AppNavComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AppNavComponent);
     component = fixture.componentInstance;
