@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" class="sticky-top">
+    <mat-toolbar-row class="shadow">
+        <button mat-icon-button class="ms-2 home-icon" aria-label="Example icon-button with home icon"
+            routerLink="/wordbook/home">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button routerLink="/wordbook/add" mat-flat-button color="primary" class="ms-4 button-font">
+            Kelime Ekle
+        </button>
+        <button mat-flat-button color="primary" routerLink="/wordbook/words" class="button-font ms-4">
+            Tüm Kelimeler
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="row2">
+        <!--TODO: this row will disappear when user scroll down but row first will stay sticky! directives may work-->
+        <span class="m-auto">
+            Yeni Kayıt Oluştur
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>

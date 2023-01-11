@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand shadow-lg" style="background-color: #673AB7;">
+<nav class="navbar navbar-expand shadow-lg" style="background-color: #673ab7;">
     <div class="container-fluid">
         <div class="collapse navbar-collapse">
-            <button routerLink="/home" mat-mini-fab color="primary">
+            <button routerLink="wordbook/home" mat-mini-fab color="primary">
                 <mat-icon>home</mat-icon>
             </button>
             <button routerLink="/wordbook/add" mat-flat-button color="primary" class="ms-2">
@@ -10,8 +10,8 @@
             <button mat-flat-button color="primary" routerLink="/wordbook/words" class="ms-2">
                 Tüm Kelimeler
             </button>
-            <form action="" class="d-flex ms-auto form-width">
-                <input class="form-control me-1 full-width" placeholder="Kelime" aria-label="Search">
+            <form action="" class="d-flex ms-auto">
+                <input class="form-control" placeholder="Kelime" aria-label="Search">
                 <button mat-raised-button extended color="primary" type="submit" class="ms-1">Ara</button>
             </form>
         </div>
