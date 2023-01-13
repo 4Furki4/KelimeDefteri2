@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'wordbook/home', pathMatch: 'full' },
   { path: 'wordbook/home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { path: 'wordbook/add', loadChildren: () => import('./create-record/create-record.module').then(m => m.CreateRecordModule) },
-  { path: 'wordbook/:date', loadChildren: () => import('./record-detail/record-detail.module').then(m => m.RecordDetailModule) },
+  { path: 'wordbook/:query', loadChildren: () => import('./record-detail/record-detail.module').then(m => m.RecordDetailModule) },
   { path: '**', component: NotFoundComponent },
 ];
 
