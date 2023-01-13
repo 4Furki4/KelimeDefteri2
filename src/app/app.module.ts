@@ -15,13 +15,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule } from '@angular/common/http';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { HomeModule } from './home/home.module';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     AppNavComponent,
-    ToolbarComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +35,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatTabsModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
