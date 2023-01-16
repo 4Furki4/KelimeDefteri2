@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, shareReplay } from 'rxjs';
 import { Record } from '../Record/Concretes/Record';
 import { RecordDetailService } from './record-detail.service';
 
@@ -29,8 +28,8 @@ export class RecordDetailComponent implements OnInit {
         if (err.status == 404) {
           this.navRoute.navigateByUrl('**', { skipLocationChange: true }); // navigate to not found page if record not found
         }
-        else if (err.status == 400) {
-          // handle bad request error
+        else if (err.status == 500) {
+          // handle Internal Server Error
         }
       }
     })
