@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'wordbook/home', pathMatch: 'full' },
   { path: 'wordbook/home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule), title: 'Home - Kelime Defteri' },
   { path: 'wordbook/add', loadChildren: () => import('./create-record/create-record.module').then(m => m.CreateRecordModule), title: 'Add Record - Kelime Defteri ' },
-  { path: 'wordbook/detail/:date', loadChildren: () => import('./record-detail/record-detail.module').then(m => m.RecordDetailModule), title: 'Detail - Kelime Defteri' },
+  { path: 'wordbook/detail/:query', loadChildren: () => import('./record-detail/record-detail.module').then(m => m.RecordDetailModule), title: 'Detail - Kelime Defteri' },
   { path: '**', component: NotFoundComponent, title: 'Not Found - Kelime Defteri' },
 ];
 
