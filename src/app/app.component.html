@@ -2,9 +2,6 @@
 
 
     <!-- <KD-app-nav></KD-app-nav> -->
-    <KD-toolbar></KD-toolbar>
-    <button class="btn btn-light text-center" routerLink="/wordbook/TEST1">
-        TEST1
-    </button>
+    <KD-toolbar [title$]="title"></KD-toolbar>
     <router-outlet></router-outlet>
 </div>
