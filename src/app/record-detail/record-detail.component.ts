@@ -19,9 +19,11 @@ export class RecordDetailComponent implements OnInit {
   ngOnInit(): void {
     const query = this.route.snapshot.paramMap.get('query') ?? '';
     this.recService.getData(query).subscribe({
-      next: (data: Record) => {
+      next: (data: any) => {
         console.log(data);
         this.Record = data as Record;
+        console.log(data.created);
+        this.Record.CreatedDate = new Date(data.created as string);
         // data parsing will be done here
       },
       error: (err: HttpErrorResponse) => {

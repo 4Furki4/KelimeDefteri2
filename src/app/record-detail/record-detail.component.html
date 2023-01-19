@@ -1,4 +1,13 @@
 <div id="expansionPanel" class="container">
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>{{Record.CreatedDate}}</mat-label>
+            <input matInput [matDatepicker]="dp1" disabled>
+            <mat-hint>Record Created Date</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+    </p>
     <mat-accordion multi>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
             *ngFor="let word of Record.words" expanded>
@@ -24,7 +33,7 @@
                 <mat-icon>delete</mat-icon>
                 Kaydı Sil
             </button>
-            <button mat-fab extended color="warn">
+            <button mat-fab extended color="accent">
                 <mat-icon>edit</mat-icon>
                 Kaydı Düzenle
             </button>
