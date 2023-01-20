@@ -1,9 +1,9 @@
 <div id="expansionPanel" class="container">
     <p>
-        <mat-form-field appearance="fill">
-            <mat-label>{{Record.CreatedDate}}</mat-label>
-            <input matInput [matDatepicker]="dp1" disabled>
+        <mat-form-field appearance="outline" color="primary">
             <mat-hint>Record Created Date</mat-hint>
+            <mat-label>{{Record.Created | date : 'dd/MM/YYYY'}}</mat-label>
+            <input matInput [matDatepicker]="dp1" disabled>
             <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
             <mat-datepicker #dp1></mat-datepicker>
         </mat-form-field>

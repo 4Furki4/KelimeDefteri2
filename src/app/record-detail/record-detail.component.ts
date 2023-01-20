@@ -23,7 +23,9 @@ export class RecordDetailComponent implements OnInit {
         console.log(data);
         this.Record = data as Record;
         console.log(data.created);
-        this.Record.CreatedDate = new Date(data.created as string);
+        data.created = data.created.split('.').reverse().join('-');
+        console.log(data.created);
+        this.Record.Created = data.created;
         // data parsing will be done here
       },
       error: (err: HttpErrorResponse) => {

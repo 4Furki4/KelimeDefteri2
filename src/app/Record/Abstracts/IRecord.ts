@@ -1,7 +1,7 @@
 import { IWord } from "./IWord";
 
 export interface IRecord {
-    CreatedDate: Date;
+    Created: string;
     LastModifiedDate: Date;
     words: IWord[];
 }
