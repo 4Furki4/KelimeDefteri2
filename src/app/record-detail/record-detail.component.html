@@ -3,7 +3,7 @@
         <mat-form-field appearance="outline" color="primary">
             <mat-hint>Record Created Date</mat-hint>
             <mat-label>{{Record.Created | date : 'dd/MM/YYYY'}}</mat-label>
-            <input matInput [matDatepicker]="dp1" disabled>
+            <input matInput [matDatepicker]=" dp1" disabled>
             <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
             <mat-datepicker #dp1></mat-datepicker>
         </mat-form-field>
@@ -29,11 +29,11 @@
             </div>
         </mat-expansion-panel>
         <div class="text-center my-2">
-            <button mat-fab extended color="warn" class="me-2">
+            <button mat-fab extended color="primary" class="me-2">
                 <mat-icon>delete</mat-icon>
                 Kaydı Sil
             </button>
-            <button mat-fab extended color="accent">
+            <button mat-fab extended color="primary">
                 <mat-icon>edit</mat-icon>
                 Kaydı Düzenle
             </button>
