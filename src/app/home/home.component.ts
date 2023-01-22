@@ -15,9 +15,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.lastRecordService.lastRecord$.subscribe(
       {
-        next: (data) => {
+        next: (data: any) => {
           this.Record = data as Record;
           console.log(this.Record);
+          console.log(data.created);
+          data.created = data.created.split('.').reverse().join('-');
+          console.log(data.created);
+          this.Record.Created = data.created;
         },
         error: (error) => {
           console.log(error); // Error handling will be done here
