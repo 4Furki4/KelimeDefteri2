@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
 
   Record!: Record;
   panelOpenState = true;
+  routerLink = '/wordbook/detail/';
   constructor(private lastRecordService: LastRecordService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('record', sanitizer.bypassSecurityTrustHtml(RECORD_ICON));
   }
@@ -40,11 +41,14 @@ export class HomeComponent implements OnInit {
           data.created = data.created.split('.').reverse().join('-');
           console.log(data.created);
           this.Record.Created = data.created;
+          this.routerLink += this.Record.Created;
+          console.log(this.routerLink)
         },
         error: (error) => {
           console.log(error); // Error handling will be done here
         }
       }
     )
+
   }
 }
