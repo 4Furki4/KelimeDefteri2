@@ -12,16 +12,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeModule } from './home/home.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { LoaderComponent } from './loader/loader.component';
+import { RequestInterceptor } from './HttpHandlers/request.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     AppNavComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,13 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatToolbarModule,
     HomeModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
