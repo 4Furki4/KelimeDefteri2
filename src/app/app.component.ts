@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from './base/base.component';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,12 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent {
   title!: any;
-  constructor(private router: Router) {
+  constructor(private router: Router, private spinner: NgxSpinnerService) {
+    this.spinner.show(SpinnerType.Ball8Bits).then(() => {
+      setTimeout(() => {
+        this.spinner.hide(SpinnerType.Ball8Bits)
+      }, 2000);
+    });
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.title = val.url.split('/')[2];

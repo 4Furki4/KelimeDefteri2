@@ -16,20 +16,20 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeModule } from './home/home.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { LoaderComponent } from './loader/loader.component';
 import { RequestInterceptor } from './HttpHandlers/request.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     AppNavComponent,
-    ToolbarComponent,
-    LoaderComponent
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     MatIconModule,
     MatSlideToggleModule,
     MatSidenavModule,

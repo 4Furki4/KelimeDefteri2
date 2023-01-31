@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { CreateRecordService } from './create-record.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [CreateRecordComponent],
   imports: [
@@ -20,7 +21,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgxSpinnerModule
   ],
   providers: [
     CreateRecordService,
