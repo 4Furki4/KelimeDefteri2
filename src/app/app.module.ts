@@ -18,6 +18,8 @@ import { HomeModule } from './home/home.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { RequestInterceptor } from './HttpHandlers/request.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CreateRecordModule } from './create-record/create-record.module';
+import { UIModule } from './ui/ui.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatTabsModule,
     HttpClientModule,
     MatToolbarModule,
-    HomeModule
+    HomeModule,
+    UIModule
   ],
   providers: [
     {

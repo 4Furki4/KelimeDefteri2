@@ -10,12 +10,7 @@ import { SpinnerType } from './base/base.component';
 })
 export class AppComponent {
   title!: any;
-  constructor(private router: Router, private spinner: NgxSpinnerService) {
-    this.spinner.show(SpinnerType.Ball8Bits).then(() => {
-      setTimeout(() => {
-        this.spinner.hide(SpinnerType.Ball8Bits)
-      }, 2000);
-    });
+  constructor(private router: Router) {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.title = val.url.split('/')[2];

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseComponent, SpinnerType } from '../base/base.component';
 import { Record } from '../Record/Concretes/Record';
 import { LastRecordService } from './last-record.service';
 const RECORD_ICON =
@@ -23,15 +25,16 @@ const RECORD_ICON =
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent extends BaseComponent implements OnInit {
   Record!: Record;
   panelOpenState = true;
   routerLink = '/wordbook/detail/';
-  constructor(private lastRecordService: LastRecordService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(spinner: NgxSpinnerService, private lastRecordService: LastRecordService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    super(spinner)
     iconRegistry.addSvgIconLiteral('record', sanitizer.bypassSecurityTrustHtml(RECORD_ICON));
   }
   ngOnInit(): void {
+    this.showSpinner(SpinnerType.Ball8Bits);
     this.lastRecordService.lastRecord$.subscribe(
       {
         next: (data: any) => {

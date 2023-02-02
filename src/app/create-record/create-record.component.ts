@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Record } from '../Record/Concretes/Record';
 import { CreateRecordService } from './create-record.service';
-import { SpinnerType } from '../base/base.component';
+import { BaseComponent, SpinnerType } from '../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 const EnterFadeInTransition = transition(':enter', [
@@ -26,8 +26,9 @@ const FadeOut = transition(':leave', [
   styleUrls: ['./create-record.component.sass'],
   animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
-export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private route: Router, private postService: CreateRecordService, private spinner: NgxSpinnerService) {
+export class CreateRecordComponent extends BaseComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder, private route: Router, private postService: CreateRecordService, spinner: NgxSpinnerService) {
+    super(spinner);
   }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
@@ -39,9 +40,9 @@ export class CreateRecordComponent implements OnInit {
   }
   createRecordForm!: FormGroup;
   ngOnInit(): void {
-    this.spinner.show(SpinnerType.Ball8Bits, { size: "default", color: "purple", fullScreen: true })
+    this.showSpinner(SpinnerType.Ball8Bits)
     setTimeout(() => {
-      this.spinner.hide(SpinnerType.Ball8Bits);
+      this.hideSpinner(SpinnerType.Ball8Bits);
     }, 2000);
     this.createRecordForm = this.formBuilder.group({ // Initial form with 4 words having 1 name and 1 definition array for each word.
       record: this.formBuilder.array([
