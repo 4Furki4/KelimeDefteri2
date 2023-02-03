@@ -49,7 +49,8 @@ import { UIModule } from './ui/ui.module';
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true
-    }
+    },
+    { provide: 'BASE_API_URL', useValue: 'https://localhost:5000/api/' }
   ],
   bootstrap: [AppComponent]
 })

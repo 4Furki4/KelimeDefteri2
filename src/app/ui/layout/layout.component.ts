@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'KD-layout',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.sass']
 })
 export class LayoutComponent {
-
+  @Input() title!: string;
 }

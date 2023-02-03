@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     HomeComponent
@@ -13,7 +17,13 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule.forChild([
       { path: '', component: HomeComponent }
-    ])
+    ]),
+    MatCardModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatButtonModule
   ]
 })
 export class HomeModule { }
