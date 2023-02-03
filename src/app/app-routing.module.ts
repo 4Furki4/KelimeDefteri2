@@ -6,6 +6,7 @@ import { LayoutComponent } from './ui/layout/layout.component';
 const routes: Routes = [
   {
     path: 'wordbook', component: LayoutComponent, children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', loadChildren: () => import('./ui/components/home/home.module').then(m => m.HomeModule), title: 'Home - Kelime Defteri' },
       { path: 'add', loadChildren: () => import('./ui/components/create-record/create-record.module').then(m => m.CreateRecordModule), title: 'Add Record - Kelime Defteri ' },
     ]
