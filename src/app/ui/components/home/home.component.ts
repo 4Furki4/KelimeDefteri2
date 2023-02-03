@@ -4,8 +4,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
-import { LastRecordService } from 'src/app/home/last-record.service';
 import { Record } from 'src/app/Record/Concretes/Record';
+import { LastrecordService } from 'src/app/services/home/lastrecord.service';
 
 const RECORD_ICON =
 	`
@@ -27,7 +27,9 @@ const RECORD_ICON =
 	styleUrls: ['./home.component.sass']
 })
 export class HomeComponent extends BaseComponent {
-	constructor(spinner: NgxSpinnerService, private lastRecordService: LastRecordService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+	constructor(spinner: NgxSpinnerService, private router: Router,
+		iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
+		private lastRecordService: LastrecordService) {
 		super(spinner)
 		iconRegistry.addSvgIconLiteral('record', sanitizer.bypassSecurityTrustHtml(RECORD_ICON));
 	}
@@ -36,23 +38,28 @@ export class HomeComponent extends BaseComponent {
 	routerLink: string = 'wordbook/detail';
 	ngOnInit(): void {
 		this.showSpinner(SpinnerType.Ball8Bits);
-		this.lastRecordService.lastRecord$.subscribe(
-			{
-				next: (data: any) => {
-					this.Record = data as Record;
-					console.log(this.Record);
-					console.log(data.created);
-					data.created = data.created.split('.').reverse().join('-');
-					console.log(data.created);
-					this.Record.Created = data.created;
-					this.routerLink += this.Record.Created;
-					console.log(this.routerLink)
-				},
-				error: (error) => {
-					console.log(error); // Error handling will be done here
-				}
-			}
-		)
+		this.Record = this.lastRecordService.getLastRecord({
+			controller: 'wordbook',
+		}, () => {
+			this.hideSpinner(SpinnerType.Ball8Bits);
+		})
+		// this.lastRecordService.lastRecord$.subscribe(
+		// 	{
+		// 		next: (data: any) => {
+		// 			this.Record = data as Record;
+		// 			console.log(this.Record);
+		// 			console.log(data.created);
+		// 			data.created = data.created.split('.').reverse().join('-');
+		// 			console.log(data.created);
+		// 			this.Record.Created = data.created;
+		// 			this.routerLink += this.Record.Created;
+		// 			console.log(this.routerLink)
+		// 		},
+		// 		error: (error) => {
+		// 			console.log(error); // Error handling will be done here
+		// 		}
+		// 	}
+		// )
 		this.hideSpinner(SpinnerType.Ball8Bits);
 	}
 }
