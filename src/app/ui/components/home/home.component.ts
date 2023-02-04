@@ -48,6 +48,10 @@ export class HomeComponent extends BaseComponent {
 			},
 			error: (error) => {
 				console.log(error); // Error handling will be done here
+				this.hideSpinner(SpinnerType.Ball8Bits);
+			},
+			complete: () => {
+				this.hideSpinner(SpinnerType.Ball8Bits);
 			}
 		})
 	}

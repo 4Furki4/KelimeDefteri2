@@ -26,6 +26,13 @@ export class CustomHttpService {
       shareReplay(1)
     )
   }
+
+  post<T>(options: Partial<HttpOptions>, body: any): Observable<T> {
+    let url = this.url(options);
+    return this.client.post<T>(url, body, {
+      headers: options.header
+    })
+  }
 }
 
 
