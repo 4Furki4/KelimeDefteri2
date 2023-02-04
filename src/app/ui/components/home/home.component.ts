@@ -34,32 +34,21 @@ export class HomeComponent extends BaseComponent {
 		iconRegistry.addSvgIconLiteral('record', sanitizer.bypassSecurityTrustHtml(RECORD_ICON));
 	}
 	panelOpenState = true;
-	Record !: Record;
-	routerLink: string = 'wordbook/detail';
+	Record: any;
+	routerLink: string = 'wordbook/detail/';
 	ngOnInit(): void {
 		this.showSpinner(SpinnerType.Ball8Bits);
-		this.Record = this.lastRecordService.getLastRecord({
-			controller: 'wordbook',
-		}, () => {
-			this.hideSpinner(SpinnerType.Ball8Bits);
+		this.lastRecordService.lastRecord$.subscribe({
+			next: (data: any) => {
+				this.Record = data as Record;
+				data.created = data.created.split('.').reverse().join('-');
+				this.Record.Created = data.created;
+				this.routerLink += this.Record.Created;
+				this.hideSpinner(SpinnerType.Ball8Bits);
+			},
+			error: (error) => {
+				console.log(error); // Error handling will be done here
+			}
 		})
-		// this.lastRecordService.lastRecord$.subscribe(
-		// 	{
-		// 		next: (data: any) => {
-		// 			this.Record = data as Record;
-		// 			console.log(this.Record);
-		// 			console.log(data.created);
-		// 			data.created = data.created.split('.').reverse().join('-');
-		// 			console.log(data.created);
-		// 			this.Record.Created = data.created;
-		// 			this.routerLink += this.Record.Created;
-		// 			console.log(this.routerLink)
-		// 		},
-		// 		error: (error) => {
-		// 			console.log(error); // Error handling will be done here
-		// 		}
-		// 	}
-		// )
-		this.hideSpinner(SpinnerType.Ball8Bits);
 	}
 }

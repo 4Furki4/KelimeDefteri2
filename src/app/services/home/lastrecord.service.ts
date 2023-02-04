@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, shareReplay } from 'rxjs';
 import { CustomHttpService, HttpOptions } from '../common/custom-http.service';
 
 @Injectable({
@@ -8,10 +9,8 @@ export class LastrecordService {
 
   constructor(private customHttp: CustomHttpService) { }
 
-
-  getLastRecord(urlOptions: Partial<HttpOptions>, callbackFunction: any) {
-    return this.customHttp.get(urlOptions).subscribe({
-      next: () => callbackFunction(),
-    })
-  }
+  lastRecord$: Observable<any> = this.customHttp.get({
+    controller: 'WordBook',
+    action: 'last'
+  }).pipe(shareReplay(1));
 }

@@ -1,4 +1,4 @@
-<mat-card *ngIf="null == null" class="mt-3">
+<mat-card *ngIf="Record == null" class="mt-3">
     <mat-card-header>
         <mat-card-title>Last Record Doesn't Exist!</mat-card-title>
     </mat-card-header>
@@ -13,7 +13,7 @@
     </mat-card-actions>
 </mat-card>
 
-<div id="expansionPanel" class="container" *ngIf="false">
+<div id="expansionPanel" class="container" *ngIf="Record">
     <p>
         <mat-form-field appearance="outline" color="primary">
             <mat-hint>Last Record</mat-hint>

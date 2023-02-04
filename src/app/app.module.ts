@@ -50,7 +50,7 @@ import { UIModule } from './ui/ui.module';
       useClass: RequestInterceptor,
       multi: true
     },
-    { provide: 'BASE_API_URL', useValue: 'https://localhost:5000/api/' }
+    { provide: 'BASE_API_URL', useValue: 'http://localhost:5000/api' }
   ],
   bootstrap: [AppComponent]
 })

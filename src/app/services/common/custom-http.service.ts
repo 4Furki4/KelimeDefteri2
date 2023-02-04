@@ -14,7 +14,7 @@ export class CustomHttpService {
   private url(options: Partial<HttpOptions>): string {
     if (options.fullUrl) return options.fullUrl;
     else
-      return `${this.baseUrl}/${options.controller}${options.action ? '' : `/${options.action}`}`;
+      return `${this.baseUrl}/${options.controller}${options.action ? `/${options.action}` : ''}`;
   }
 
   get<T>(options: Partial<HttpOptions>, id?: number): Observable<T> {
@@ -33,5 +33,5 @@ export class HttpOptions {
   header?: HttpHeaders;
   fullUrl?: string;
   controller !: string;
-  action?: string;
+  action!: string;
 }
