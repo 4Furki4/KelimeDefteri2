@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Record } from 'src/app/Record/Concretes/Record';
+import { ThemeService } from 'src/app/services/common/theme.service';
 import { CreateRecordService } from 'src/app/services/create/create-record.service';
 const EnterFadeInTransition = transition(':enter', [
   style({ marginTop: '10px' }),
@@ -25,11 +26,11 @@ const FadeOut = transition(':leave', [
   animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
 export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private route: Router, private createRecService: CreateRecordService) { }
+  constructor(private formBuilder: FormBuilder, private route: Router, private createRecService: CreateRecordService, private themeService: ThemeService) { }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
-
+  isDark$ = this.themeService.darkMode$;
   receivedData: any[] = [];
   get createdDate() {
     return this.createRecordForm.get('createdDate')
@@ -119,15 +120,6 @@ export class CreateRecordComponent implements OnInit {
         console.log(error); // This will do something meaningful, like throwing a message to user that the submittion is failed, in the future.
       }
     })
-    // this.postService.PostRecord(record).subscribe({
-    //   next: (data) => {
-    //     console.log(data.body);
-    //     this.route.navigate(['record-detail'], { queryParams: {/*this will be the date of the record that was created */ } });
-    //   },
-    //   error: (error) => {
-    //     console.log(error); // This will do something meaningful, like throwing a message to user that the submittion is failed, in the future.
-    //   }
-    // });
   }
 
 }

@@ -5,8 +5,9 @@
         </div>
     </div> -->
     <mat-form-field class="mb-2" appearance="outline">
-        <mat-label>Select a Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="createdDate">
+        <mat-label [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">Select a Date</mat-label>
+        <input [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'" matInput [matDatepicker]="picker"
+            formControlName="createdDate">
         <mat-error *ngIf="createRecordForm.get('createdDate')?.hasError('required')">
             Please enter a valid date
         </mat-error>
@@ -18,8 +19,8 @@
             style="border-color: #673AB7 !important; border-width: 2px !important;">
             <div [formGroupName]="i">
                 <mat-form-field appearance="outline" class="offset-2 col-4 mt-3 mb-1">
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName="name">
+                    <mat-label [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">Name</mat-label>
+                    <input matInput formControlName="name" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
                     <mat-error *ngIf="wordErrorAt(i, 'required')">
                         Name is required
                     </mat-error>
@@ -31,8 +32,10 @@
                     <div *ngFor="let def of definition(i).controls ; let x = index" @fadeIn @fadeOut>
                         <span [formGroupName]="x" class="">
                             <mat-form-field appearance="outline" class="offset-2 col-4 mb-2">
-                                <mat-label>Definition</mat-label>
-                                <input class="" matInput formControlName="definition">
+                                <mat-label
+                                    [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">Definition</mat-label>
+                                <input matInput formControlName="definition"
+                                    [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
                                 <mat-error *ngIf="definitionErrorAt(i,x,'required')">
                                     Definition is required
                                 </mat-error>
@@ -42,8 +45,10 @@
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="col-4 ms-2">
-                                <mat-label>Definition type</mat-label>
-                                <input class="" matInput formControlName="definitionType">
+                                <mat-label [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">Definition
+                                    type</mat-label>
+                                <input matInput formControlName="definitionType"
+                                    [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
                                 <mat-error *ngIf="definitionTypeErrorAt(i,x,'required')">
                                     Definition type is required
                                 </mat-error>
@@ -52,11 +57,11 @@
                                     Minimum length is 3
                                 </mat-error>
                             </mat-form-field>
-                            <button class="bt-size" *ngIf="x===0" mat-raised-button color="primary" focus
+                            <button class="bt-size" *ngIf="x===0" mat-fab extended color="primary" focus
                                 (click)="addDefinition(i)">
                                 Ekle
                             </button>
-                            <button class="bt-size" mat-raised-button color="primary" *ngIf="x>=1"
+                            <button class="bt-size" mat-fab extended color="primary" *ngIf="x>=1"
                                 (click)="removeDefinition(i,x)">
                                 Sil
                             </button>
@@ -69,7 +74,8 @@
     <div class="row">
         <div class="col-12 text-center mb-5">
             <button id="submitBtn" type="submit" (click)="SubmitRecord()" [disabled]="!this.createRecordForm.valid"
-                class="shadow-lg text-white border-bottom" mat-raised-button color="primary">
+                class="shadow" mat-fab extended color="primary"
+                [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
                 Gönder
             </button>
         </div>
