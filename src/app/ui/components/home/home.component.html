@@ -1,4 +1,4 @@
-<mat-card *ngIf="Record == null" class="mt-3">
+<mat-card *ngIf="Record == null" class="mt-3" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
     <mat-card-header>
         <mat-card-title>Last Record Doesn't Exist!</mat-card-title>
     </mat-card-header>
@@ -15,7 +15,7 @@
 
 <div id="expansionPanel" class="container" *ngIf="Record">
     <p>
-        <mat-form-field appearance="outline" color="primary">
+        <mat-form-field appearance="outline" color="primary" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
             <mat-hint>Last Record</mat-hint>
             <mat-label>{{Record.Created | date : 'dd/MM/YYYY'}}</mat-label>
             <input matInput [matDatepicker]=" dp1" disabled>
@@ -24,8 +24,8 @@
         </mat-form-field>
     </p>
     <mat-accordion multi>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-            *ngFor="let word of Record.words" expanded>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false "
+            *ngFor="let word of Record.words" expanded [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
             <mat-expansion-panel-header>
                 <mat-panel-title class="fs-4" style="color: #673AB7;">
                     {{word.name}}

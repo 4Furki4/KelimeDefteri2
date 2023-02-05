@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { Record } from 'src/app/Record/Concretes/Record';
+import { ThemeService } from 'src/app/services/common/theme.service';
 import { LastrecordService } from 'src/app/services/home/lastrecord.service';
 
 const RECORD_ICON =
@@ -29,14 +30,20 @@ const RECORD_ICON =
 export class HomeComponent extends BaseComponent {
 	constructor(spinner: NgxSpinnerService, private router: Router,
 		iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-		private lastRecordService: LastrecordService) {
+		private lastRecordService: LastrecordService,
+		private themeService: ThemeService) {
 		super(spinner)
 		iconRegistry.addSvgIconLiteral('record', sanitizer.bypassSecurityTrustHtml(RECORD_ICON));
 	}
 	panelOpenState = true;
 	Record: any;
+
+	isDark$ = this.themeService.darkMode$;
 	routerLink: string = 'wordbook/detail/';
 	ngOnInit(): void {
+		this.themeService.darkMode$.subscribe(data => {
+			console.log(data);
+		})
 		this.showSpinner(SpinnerType.Ball8Bits);
 		this.lastRecordService.lastRecord$.subscribe({
 			next: (data: any) => {
