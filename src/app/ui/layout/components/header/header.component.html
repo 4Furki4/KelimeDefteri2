@@ -11,6 +11,9 @@
             Tüm Kelimeler
         </button>
         <span class="spacer"></span>
+        <mat-slide-toggle color="primary" [checked]="darkMode$ | async" (change)="onToggle()">
+            Dark Mode
+        </mat-slide-toggle>
         <a href="https://github.com/4Furki4/KelimeDefteri2" target="_blank" style="color: whitesmoke;">
             <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
                 <mat-icon svgIcon="github"></mat-icon>
