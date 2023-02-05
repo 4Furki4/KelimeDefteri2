@@ -22,6 +22,7 @@ const RECORD_ICON =
 </g>
 </svg>
   `;
+const CALENDAR_ICON = `<svg viewBox="0 0 24 24" width="24px" height="24px" fill="#673AB7" focusable="false"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"></path></svg>`
 @Component({
 	selector: 'KD-home',
 	templateUrl: './home.component.html',
@@ -34,6 +35,7 @@ export class HomeComponent extends BaseComponent {
 		private themeService: ThemeService) {
 		super(spinner)
 		iconRegistry.addSvgIconLiteral('record', sanitizer.bypassSecurityTrustHtml(RECORD_ICON));
+		iconRegistry.addSvgIconLiteral('calendar', sanitizer.bypassSecurityTrustHtml(CALENDAR_ICON));
 	}
 	panelOpenState = true;
 	Record: any;

@@ -14,15 +14,14 @@
 </mat-card>
 
 <div id="expansionPanel" class="container" *ngIf="Record">
-    <p>
-        <mat-form-field appearance="outline" color="primary" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
-            <mat-hint>Last Record</mat-hint>
-            <mat-label>{{Record.Created | date : 'dd/MM/YYYY'}}</mat-label>
-            <input matInput [matDatepicker]=" dp1" disabled>
-            <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
-            <mat-datepicker #dp1></mat-datepicker>
-        </mat-form-field>
-    </p>
+
+    <div id="createdDate" class="shadow-sm mb-3 p-1" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
+        <div id="date-text">
+            {{Record.Created | date : 'dd/MM/YYYY'}}
+        </div>
+        <mat-icon id="date-icon" svgIcon="calendar"></mat-icon>
+        <div id="date-label">Last Record</div>
+    </div>
     <mat-accordion multi>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false "
             *ngFor="let word of Record.words" expanded [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">

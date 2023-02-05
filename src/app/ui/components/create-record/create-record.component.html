@@ -1,9 +1,9 @@
 <form @slide @fadeIn [formGroup]="createRecordForm" class="offset-xl-1 offset-xxl-2 col-xxl-8 col-xl-10 rounded-2">
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-12 text-center">
             <h1 class="mt-1 mb-3">Yeni Kayıt Oluştur</h1>
         </div>
-    </div> -->
+    </div>
     <mat-form-field class="mb-2" appearance="outline">
         <mat-label [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">Select a Date</mat-label>
         <input [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'" matInput [matDatepicker]="picker"
@@ -15,8 +15,9 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <div id="createForm" formArrayName="record" class="border border-bottom-0 rounded-2">
-        <div *ngFor="let recControl of record.controls; let i = index" class="border-bottom rounded-2"
-            style="border-color: #673AB7 !important; border-width: 2px !important;">
+        <div id="input-row" *ngFor="let recControl of record.controls; let i = index" class="border-bottom rounded-2"
+            style="border-color: #673AB7 !important; border-width: 2px !important;"
+            [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
             <div [formGroupName]="i">
                 <mat-form-field appearance="outline" class="offset-2 col-4 mt-3 mb-1">
                     <mat-label [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">Name</mat-label>
