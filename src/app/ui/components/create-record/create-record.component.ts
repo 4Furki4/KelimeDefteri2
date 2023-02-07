@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Record } from 'src/app/Record/Concretes/Record';
+import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
 import { ThemeService } from 'src/app/services/common/theme.service';
 import { CreateRecordService } from 'src/app/services/create/create-record.service';
 const EnterFadeInTransition = transition(':enter', [
@@ -26,7 +27,9 @@ const FadeOut = transition(':leave', [
   animations: [trigger('slide', [EnterFadeInTransition]), trigger('fadeIn', [fadeIn]), trigger('fadeOut', [FadeOut])]
 })
 export class CreateRecordComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private route: Router, private createRecService: CreateRecordService, private themeService: ThemeService) { }
+  constructor(private formBuilder: FormBuilder, private route: Router,
+    private createRecService: CreateRecordService,
+    private themeService: ThemeService, private toastr: CustomToastrService) { }
   get record() {
     return this.createRecordForm.get('record') as FormArray; // property that helps to get the record array from the form
   }
@@ -114,10 +117,18 @@ export class CreateRecordComponent implements OnInit {
     this.createRecService.PostRecord<Record>(record).subscribe({
       next: (data) => {
         console.log(data);
+        this.toastr.show("Record Created Successfully", "Create Message", ToastrType.Success, ToastrPosition.BottomLeft, {
+          timeOut: 3000,
+          progressBar: true,
+        })
         this.route.navigate(['record-detail'], { queryParams: {/*this will be the date of the record that was created */ } });
       },
       error: (error) => {
         console.log(error); // This will do something meaningful, like throwing a message to user that the submittion is failed, in the future.
+        this.toastr.show("Record Creation Failed", "Create Message", ToastrType.Error, ToastrPosition.BottomLeft, {
+          timeOut: 3000,
+          progressBar: true,
+        })
       }
     })
   }

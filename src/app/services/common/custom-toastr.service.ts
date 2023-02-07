@@ -8,11 +8,11 @@ export class CustomToastrService {
 
   constructor(private toastr: ToastrService) { }
 
-  showSuccess(message: string, title: string, type: ToastrType, position: ToastrPosition, configs: ToastrConfigs) {
-    this.toastr.success(message, title, {
-      timeOut: configs.timeout,
+  show(message: string, title: string, type: ToastrType, position: ToastrPosition, configs: Partial<ToastrConfigs>) {
+    this.toastr[type](message, title, {
+      timeOut: configs.timeOut,
       progressBar: configs.progressBar,
-      positionClass: 'toast-top-right'
+      positionClass: position,
     });
   }
 }
@@ -36,6 +36,6 @@ export enum ToastrPosition {
 }
 
 export class ToastrConfigs {
-  timeout!: number;
+  timeOut!: number;
   progressBar!: boolean;
 }
