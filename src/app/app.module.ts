@@ -10,6 +10,7 @@ import { RequestInterceptor } from './HttpHandlers/request.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { UIModule } from './ui/ui.module';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { UIModule } from './ui/ui.module';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     HttpClientModule,
-    UIModule
+    UIModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
