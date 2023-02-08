@@ -1,10 +1,9 @@
 <div id="expansionPanel" class="container" *ngIf="Record">
-    <div id="createdDate" class="shadow-sm mb-3 p-1" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
+    <div id="createdDate" class="shadow-sm mb-3 p-2" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
         <div id="date-text">
             {{Record.Created | date : 'dd/MM/YYYY'}}
         </div>
         <mat-icon id="date-icon" svgIcon="calendar"></mat-icon>
-        <div id="date-label">Last Record</div>
     </div>
     <mat-accordion multi>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"

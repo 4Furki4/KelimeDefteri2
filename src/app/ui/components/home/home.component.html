@@ -15,7 +15,7 @@
 
 <div id="expansionPanel" class="container" *ngIf="Record">
 
-    <div id="createdDate" class="shadow-sm mb-3 p-1" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
+    <div id="createdDate" class="shadow-sm mb-3 p-2" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
         <div id="date-text">
             {{Record.Created | date : 'dd/MM/YYYY'}}
         </div>
@@ -44,7 +44,7 @@
         </mat-expansion-panel>
     </mat-accordion>
     <div class="text-center mt-2 mb-5">
-        <button mat-fab extended color="primary" class="me-2" [routerLink]="routerLink">
+        <button mat-fab extended color="primary" class="me-2" [routerLink]="['/wordbook/record/', Record.Created]">
             Detaylara Git
         </button>
     </div>

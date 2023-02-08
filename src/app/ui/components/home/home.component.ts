@@ -38,10 +38,9 @@ export class HomeComponent extends BaseComponent {
 		iconRegistry.addSvgIconLiteral('calendar', sanitizer.bypassSecurityTrustHtml(CALENDAR_ICON));
 	}
 	panelOpenState = true;
-	Record: any;
+	Record!: Record;
 
 	isDark$ = this.themeService.darkMode$;
-	routerLink: string = '/wordbook/record/';
 	ngOnInit(): void {
 		this.themeService.darkMode$.subscribe(data => {
 			console.log(data);
@@ -52,7 +51,6 @@ export class HomeComponent extends BaseComponent {
 				this.Record = data as Record;
 				data.created = data.created.split('.').reverse().join('-');
 				this.Record.Created = data.created;
-				this.routerLink += this.Record.Created;
 				this.hideSpinner(SpinnerType.Ball8Bits);
 			},
 			error: (error) => {
