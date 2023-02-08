@@ -41,7 +41,7 @@ export class HomeComponent extends BaseComponent {
 	Record: any;
 
 	isDark$ = this.themeService.darkMode$;
-	routerLink: string = 'wordbook/detail/';
+	routerLink: string = '/wordbook/record/';
 	ngOnInit(): void {
 		this.themeService.darkMode$.subscribe(data => {
 			console.log(data);

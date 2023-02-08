@@ -17,9 +17,11 @@ export class CustomHttpService {
       return `${this.baseUrl}/${options.controller}${options.action ? `/${options.action}` : ''}`;
   }
 
-  get<T>(options: Partial<HttpOptions>, id?: number): Observable<T> {
+  get<T>(options: Partial<HttpOptions>, query?: string): Observable<T> {
     let url = this.url(options);
-    if (id) url = `${url}/${id}`;
+    if (query) url = `${url}/${query}`;
+    console.log(url);
+
     return this.client.get<T>(url, {
       headers: options.header
     }).pipe(

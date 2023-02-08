@@ -1,0 +1,40 @@
+<div id="expansionPanel" class="container" *ngIf="Record">
+    <div id="createdDate" class="shadow-sm mb-3 p-1" [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
+        <div id="date-text">
+            {{Record.Created | date : 'dd/MM/YYYY'}}
+        </div>
+        <mat-icon id="date-icon" svgIcon="calendar"></mat-icon>
+        <div id="date-label">Last Record</div>
+    </div>
+    <mat-accordion multi>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            *ngFor="let word of Record.words" expanded [ngClass]="(isDark$ | async )? 'dark-mode' : 'light-mode'">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="fs-4" style="color: #673AB7;">
+                    {{word.name}}
+                </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let def of word.definitions" class="fs-5">
+                <div class="row">
+                    <div class="col-9 mt-1 py-3">
+                        {{def.definition}}
+                    </div>
+                    <div class="col-3 mt-1 py-3">
+                        İsim, eskimiş, edebiyat
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <div class="text-center my-2">
+            <button mat-fab extended color="primary" class="me-2">
+                <mat-icon>delete</mat-icon>
+                Kaydı Sil
+            </button>
+            <button mat-fab extended color="primary">
+                <mat-icon>edit</mat-icon>
+                Kaydı Düzenle
+            </button>
+        </div>
+    </mat-accordion>
+</div>
