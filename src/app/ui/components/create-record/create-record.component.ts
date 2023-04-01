@@ -7,8 +7,8 @@ import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/service
 import { ThemeService } from 'src/app/services/common/theme.service';
 import { CreateRecordService } from 'src/app/services/create/create-record.service';
 const EnterFadeInTransition = transition(':enter', [
-  style({ marginTop: '10px' }),
-  animate('750ms ease-out', style({ marginTop: '40px' })),
+  style({ position: 'relative', left: '-100px' }),
+  animate('750ms ease-out', style({ transform: 'translateX(100px)' })),
 ]);
 const fadeIn = transition(':enter', [
   style({ opacity: 0 }),
